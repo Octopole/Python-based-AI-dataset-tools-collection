@@ -49,12 +49,12 @@ cv2.destroyAllWindows()
 
 fps = mp4.get(cv2.CAP_PROP_FPS) 
 print(fps)
-widght = mp4.get(cv2.CAP_PROP_FRAME_WIDTH)
-height = mp4.get(cv2.CAP_PROP_FRAME_HEIGHT)
+width = int(mp4.get(cv2.CAP_PROP_FRAME_WIDTH))
+height = int(mp4.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
 area = config["boxes"][0]
 
-print(str(widght) + "x" + str(height))
+print(str(width) + "x" + str(height))
 
 i = 0
 outputpath = sys.argv[2]+"/"
@@ -69,7 +69,7 @@ while is_opened:
         if(i%bias==0):
             mid = [(area[0]+area[2])/2, (area[1]+area[3])/2]
             sca = max(abs(area[0]-area[2]), abs(area[1]-area[3]))/2
-            frame = frame[max(int(mid[1]-sca), 1):min(int(mid[1]+sca), height), max(int(mid[0]-sca), 1) : min(int(mid[0]+sca), widght)]            
+            frame = frame[max(int(mid[1]-sca), 1):min(int(mid[1]+sca), height), max(int(mid[0]-sca), 1) : min(int(mid[0]+sca), width)]            
             file_name = outputpath+"image" + str(i) + ".jpg"
             cv2.imwrite(file_name, frame)  # 保存图片
 
